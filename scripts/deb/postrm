@@ -21,6 +21,5 @@ fi
 # End automatically added section
 
 if [ "$1" = "remove" ]; then
-    tedge config remove c8y.smartrest.templates modbus
 	tedge refresh-bridges
 fi

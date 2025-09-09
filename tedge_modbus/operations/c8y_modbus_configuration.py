@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cumulocity IoT ModbusConfiguration operation handler"""
+"""Cumulocity ModbusConfiguration operation handler"""
 import json
 import logging
 import toml
@@ -15,9 +15,9 @@ logging.basicConfig(
 
 def run(arguments, context: Context):
     """Run c8y_ModbusConfiguration operation handler"""
-    if len(arguments) != 4:
+    if len(arguments) != 2:
         raise ValueError(
-            f"Expected 4 arguments in smart rest template. Got {len(arguments)}"
+            f"Expected 2 arguments. Got {len(arguments)}"
         )
     # Get device configuration
     modbus_config = context.base_config
@@ -25,8 +25,8 @@ def run(arguments, context: Context):
     logger.setLevel(getattr(logging, loglevel.upper(), logging.INFO))
     logger.info("New c8y_ModbusConfiguration operation")
     logger.debug("Current configuration: %s", modbus_config)
-    transmit_rate = int(arguments[2])
-    polling_rate = int(arguments[3])
+    transmit_rate = int(arguments[0])
+    polling_rate = int(arguments[1])
     logger.debug("transmitRate: %d, pollingRate: %d", transmit_rate, polling_rate)
 
     # Update configuration
